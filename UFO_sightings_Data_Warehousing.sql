@@ -1,15 +1,10 @@
 /* DataBase 2 W18 Assignment 1
-
-Made by: Grace Wang, Bowie Huang Charles Lei, Dave Cheng
-This is a collaborate effort with the four of us
-
 Created: March 1, 2018
-Modified By: Grace Wang, Bowie Huang Charles Lei, Dave Cheng
-Table creation: Grace, Charles, Dave
-Ovaerall Code test, query optimization: Bowie
-Star Diagram: Bowie, Dave
+This assignment builds a data warehouse using dimensional modeling.
+The dataset is using contains over 80,000 reports of UFO sightings over the last centurey. The Kaggle link is: https://www.kaggle.com/NUFORC/ufo-sightings .
 
-
+The column metadata has the following attributes:
+dateTime, city, state, country, shape, duration(seconds), duration(hours/min), comments, date posted, latitude and longitude of sighting .
  */
 
 set serveroutput on
@@ -27,10 +22,7 @@ column column_name format a20
 SPOOL A1.log;
 
 /*
-**Created By: Charles
-**Create a dimension date table
 **The table contains eight colums
-**Modified and fixed by: Dave, Grace
 */
 DROP TABLE Dim_Date CASCADE CONSTRAINTS PURGE;
 
@@ -144,7 +136,6 @@ CREATE OR REPLACE PROCEDURE InputDateTime IS
 SHOW ERROR
 
 /* 
-this is written by Dave
 this is the dimensions time table
 it arranges the row taken from ufo database and reformats 5 character
 it has different attribute for example
@@ -255,8 +246,6 @@ CREATE SEQUENCE Dim_Time_sequence
 
 
 /*
-*Created by Dave
-*Modified and error fixed by Grace
 * Create location dimention table, which includes location ID, city, state, country, continent
 *
 */
@@ -332,7 +321,6 @@ END;
 SHOW ERROR
 
 /*
-*Made By: Grace 
 * Create duration dimention table
 *
 */
@@ -433,10 +421,7 @@ END;
 	
 	
 /*
-*Created By Dave
-*Code Fix By Grace
 * Create sequence for duration ID column
-* Created by Grace, with modification/code fix by Dave
 * it has field of name, has a type of not, and occurance
 * it looks like this: 
 
@@ -513,9 +498,6 @@ EXEC popShape();
 
 
 /*
- *Created By Charles
- *Modified by Grace and Dave
- *Error checking by Bowie
  * EVENTID is the primary Key
  * This is the UFO Sighting table, which is a fact table.
  * For each sighting, it records the DateID, TimeID, Duration, location,
